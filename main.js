@@ -145,7 +145,9 @@ function getPsnPresence() {
         })
         res.on('end', function () {
             console.log('DEBUG JSON: ' + data)
-            var d = JSON.parse(data)
+            //var d = JSON.parse(data)
+            console.log('DEBUG TYPEOF DATA: ' + typeof(data))
+            var d = JSON.parse(JSON.stringify(data))
             console.log('DEBUG D: ' + d)
             store.set('onlineID', d.profile.onlineId)
             store.set('profilePicture', d.profile.avatarUrls[1].avatarUrl)
