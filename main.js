@@ -91,7 +91,7 @@ function login(code) {
     }
 
     var req = http.request(options, function (res) {
-        res.setEncoding('ascii')
+        res.setEncoding('utf8')
         res.on('data', function (body) {
             store.set('responses', body)
             startCron()
@@ -144,15 +144,15 @@ function getPsnPresence() {
             data += chunk
         })
         res.on('end', function () {
-            console.log('1DEBUG JSON: ' + data)
+            //console.log('1DEBUG JSON: ' + data)
             var d = JSON.parse(data)
             //console.log('DEBUG TYPEOF DATA: ' + typeof(data))
-            console.log('1DEBUG TYPEOF DATA: ' + typeof(data))
-            console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.stringify(data)))
-            console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.parse(JSON.stringify(data))))
+            //console.log('1DEBUG TYPEOF DATA: ' + typeof(data))
+            //console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.stringify(data)))
+           //console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.parse(JSON.stringify(data))))
             
             //var d = JSON.parse(JSON.stringify(data))
-            console.log('1DEBUG TYPEOF D: ' + typeof(d))
+           // console.log('1DEBUG TYPEOF D: ' + typeof(d))
             
             //console.log('1DEBUG size: ' + store.size)
             
@@ -168,8 +168,8 @@ function getPsnPresence() {
             //    console.log('1DEBUG - obj - accountInfo - undef')
             //}
             //console.log('1DEBUG accountInfo: ' + obj)
-            console.log('1DEBUG d: ' + d)
-            console.log('DEBUG TYPEOF D: ' + typeof(d))
+           // console.log('1DEBUG d: ' + d)
+            //console.log('DEBUG TYPEOF D: ' + typeof(d))
             //var dd=JSON.parse(d)
             //console.log('DEBUG TYPEOF D: ' + typeof(dd))
             //console.log('1DEBUG profile1: ' + d["profile"])
