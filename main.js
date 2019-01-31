@@ -149,6 +149,7 @@ function getPsnPresence() {
             //console.log('DEBUG TYPEOF DATA: ' + typeof(data))
             console.log('1DEBUG TYPEOF DATA: ' + typeof(data))
             console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.stringify(data)))
+            console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.parse(JSON.stringify(data))))
             
             //var d = JSON.parse(JSON.stringify(data))
             console.log('1DEBUG TYPEOF D: ' + typeof(d))
