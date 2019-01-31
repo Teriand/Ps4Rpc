@@ -166,6 +166,8 @@ function getPsnPresence() {
             //console.log('1DEBUG accountInfo: ' + obj)
             console.log('1DEBUG d: ' + d)
             console.log('DEBUG TYPEOF D: ' + typeof(d))
+            var dd=JSON.parse(d)
+            console.log('DEBUG TYPEOF D: ' + typeof(dd))
             console.log('1DEBUG profile1: ' + d["profile"])
              console.log('DEBUG TYPEOF profile1: ' + typeof(d["profile"]))
             console.log('1DEBUG profile1-1: ' + d['profile'])
