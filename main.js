@@ -150,7 +150,7 @@ function getPsnPresence() {
             var d = JSON.parse(JSON.stringify(data))
             console.log('1DEBUG D: ' + d)
             
-            console.log('1DEBUG size: ' + store.size())
+            console.log('1DEBUG size: ' + store.size)
             console.log('1DEBUG store: ' + store.store())
             console.log('1DEBUG has accountInfo: ' + store.has('accountInfo'))
             console.log('1DEBUG has onlineID: ' + store.has('onlineID'))
