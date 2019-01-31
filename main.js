@@ -160,7 +160,7 @@ function getPsnPresence() {
             if (obj == undefined) {
                 console.log('1DEBUG - obj - accountInfo - undef')
             }
-            console.log('1DEBUG accountInfo: ' + obj.)
+            console.log('1DEBUG accountInfo: ' + obj)
             console.log('1DEBUG profile1: ' + d['profile'])
             console.log('1DEBUG profile2: ' + d.profile)
             console.log('1DEBUG onlineID: ' + d.profile.onlineId)
