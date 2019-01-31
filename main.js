@@ -139,7 +139,7 @@ function getPsnPresence() {
 
     var req = http.request(options, function (res) {
         var data = ""
-        res.setEncoding("ascii")
+        res.setEncoding("utf8")
         res.on('data', function (chunk) {
             data += chunk
         })
