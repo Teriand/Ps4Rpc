@@ -147,13 +147,16 @@ function getPsnPresence() {
             console.log('1DEBUG JSON: ' + data)
             //var d = JSON.parse(data)
             //console.log('DEBUG TYPEOF DATA: ' + typeof(data))
-            var d = JSON.parse(JSON.stringify(data))
+            console.log('1DEBUG TYPEOF DATA: ' + typeof(data))
+            console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.stringify(data)))
             
+            var d = JSON.parse(JSON.stringify(data))
+            console.log('1DEBUG TYPEOF D: ' + typeof(d))
             
             //console.log('1DEBUG size: ' + store.size)
             
             //BAD console.log('1DEBUG store: ' + store.store)
-            console.log('store.store: '+util.inspect(store.store, false, null, true ))
+            //console.log('store.store: '+util.inspect(store.store, false, null, true ))
             
             //console.log('1DEBUG has accountInfo: ' + store.has('accountInfo'))
             //console.log('1DEBUG has onlineID: ' + store.has('onlineID'))
@@ -166,14 +169,14 @@ function getPsnPresence() {
             //console.log('1DEBUG accountInfo: ' + obj)
             console.log('1DEBUG d: ' + d)
             console.log('DEBUG TYPEOF D: ' + typeof(d))
-            var dd=JSON.parse(d)
-            console.log('DEBUG TYPEOF D: ' + typeof(dd))
-            console.log('1DEBUG profile1: ' + d["profile"])
-             console.log('DEBUG TYPEOF profile1: ' + typeof(d["profile"]))
-            console.log('1DEBUG profile1-1: ' + d['profile'])
+            //var dd=JSON.parse(d)
+            //console.log('DEBUG TYPEOF D: ' + typeof(dd))
+            //console.log('1DEBUG profile1: ' + d["profile"])
+             //console.log('DEBUG TYPEOF profile1: ' + typeof(d["profile"]))
+            //console.log('1DEBUG profile1-1: ' + d['profile'])
             //console.log('1DEBUG profile.npId: ' + d["profile"].npId)
             //console.log('1DEBUG profile.npId2: ' + d["profile"].["npId"])
-            console.log('1DEBUG npId: ' + d.profile.npId)
+            //console.log('1DEBUG npId: ' + d.profile.npId)
             //console.log('1DEBUG onlineID: ' + d.profile.onlineId)
             
 
