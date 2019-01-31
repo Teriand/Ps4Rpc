@@ -145,12 +145,12 @@ function getPsnPresence() {
         })
         res.on('end', function () {
             console.log('1DEBUG JSON: ' + data)
-            //var d = JSON.parse(data)
+            var d = JSON.parse(data)
             //console.log('DEBUG TYPEOF DATA: ' + typeof(data))
             console.log('1DEBUG TYPEOF DATA: ' + typeof(data))
             console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.stringify(data)))
             
-            var d = JSON.parse(JSON.stringify(data))
+            //var d = JSON.parse(JSON.stringify(data))
             console.log('1DEBUG TYPEOF D: ' + typeof(d))
             
             //console.log('1DEBUG size: ' + store.size)
