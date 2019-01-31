@@ -144,7 +144,9 @@ function getPsnPresence() {
             data += chunk
         })
         res.on('end', function () {
+            console.log('DEBUG JSON: ' + data)
             var d = JSON.parse(data)
+            console.log('DEBUG D: ' + d)
             store.set('onlineID', d.profile.onlineId)
             store.set('profilePicture', d.profile.avatarUrls[1].avatarUrl)
             store.set("accountInfo", d.profile.presences[0])
@@ -162,6 +164,7 @@ function getPsnPresence() {
 
 function updateRPC() {
     var obj = store.get('accountInfo')
+    console.log('DEBUG accountInfo: ' + obj)
     console.log(obj.platform)
     if (obj.titleName != undefined) {
         client.updatePresence({
