@@ -151,7 +151,10 @@ function getPsnPresence() {
             console.log('1DEBUG D: ' + d)
             
             console.log('1DEBUG size: ' + store.size)
-            console.log('1DEBUG store: ' + store.store)
+            
+            //BAD console.log('1DEBUG store: ' + store.store)
+            console.log(util.inspect(store.store, false, null, true ))
+            
             console.log('1DEBUG has accountInfo: ' + store.has('accountInfo'))
             console.log('1DEBUG has onlineID: ' + store.has('onlineID'))
             console.log('1DEBUG has profilePicture: ' + store.has('profilePicture'))
