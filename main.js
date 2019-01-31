@@ -165,9 +165,11 @@ function getPsnPresence() {
             //}
             //console.log('1DEBUG accountInfo: ' + obj)
             console.log('1DEBUG d: ' + d)
+            console.log('DEBUG TYPEOF D: ' + typeof(d))
             console.log('1DEBUG profile1: ' + d["profile"])
+             console.log('DEBUG TYPEOF profile1: ' + typeof(d["profile"]))
             console.log('1DEBUG profile1-1: ' + d['profile'])
-            console.log('1DEBUG profile.npId: ' + d["profile"].npId)
+            //console.log('1DEBUG profile.npId: ' + d["profile"].npId)
             //console.log('1DEBUG profile.npId2: ' + d["profile"].["npId"])
             console.log('1DEBUG npId: ' + d.profile.npId)
             //console.log('1DEBUG onlineID: ' + d.profile.onlineId)
