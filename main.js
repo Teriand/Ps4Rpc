@@ -144,11 +144,21 @@ function getPsnPresence() {
             data += chunk
         })
         res.on('end', function () {
-            console.log('DEBUG JSON: ' + data)
+            console.log('1DEBUG JSON: ' + data)
             //var d = JSON.parse(data)
-            console.log('DEBUG TYPEOF DATA: ' + typeof(data))
+            //console.log('DEBUG TYPEOF DATA: ' + typeof(data))
             var d = JSON.parse(JSON.stringify(data))
-            console.log('DEBUG D: ' + d)
+            console.log('1DEBUG D: ' + d)
+            
+         
+            var obj = store.get('accountInfo')
+            if (obj == undefined) {
+                console.log('1DEBUG - obj - accountInfo - undef')
+            }
+            console.log('1DEBUG accountInfo: ' + obj)
+            console.log('1DEBUG onlineID: ' + d.profile.onlineId)
+            
+
             store.set('onlineID', d.profile.onlineId)
             store.set('profilePicture', d.profile.avatarUrls[1].avatarUrl)
             store.set("accountInfo", d.profile.presences[0])
