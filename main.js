@@ -205,7 +205,7 @@ function updateRPC() {
         client.updatePresence({
             state: obj.gameStatus,
             //details: obj.onlineStatus,
-            details: obj.titleName + 'XXX' + obj.npTitleIconUrl,
+            details: obj.titleName,
   //npTitleIconUrl
             largeImageKey: 'ps4_main',
             largeImageText: 'tea is delicious',
