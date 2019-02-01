@@ -211,7 +211,7 @@ function updateRPC() {
             largeImageText: 'tea is delicious',
             smallImageKey: 'snek_small',
             smallImageText: 'i am my own pillows',
-            largueImageKey: 'ps4_main',
+        //    largueImageKey: 'ps4_main',
             instance: true
         })
     } else {
