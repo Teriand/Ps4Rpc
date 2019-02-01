@@ -205,13 +205,13 @@ function updateRPC() {
         client.updatePresence({
             state: obj.gameStatus,
             //details: obj.onlineStatus,
-            details: obj.titleName + 'XXX' + obj.onlineStatus,
+            details: obj.titleName + 'XXX' + obj.npTitleIconUrl,
   //npTitleIconUrl
-            largeImageKey: obj.tleIconUrl,
+            largeImageKey: 'ps4_main',
             largeImageText: 'tea is delicious',
-            smallImageKey: 'snek_small',
             smallImageText: 'i am my own pillows',
         //    largueImageKey: 'ps4_main',
+            smallImageKey: 'ps_small',
             instance: true
         })
     } else {
