@@ -207,11 +207,10 @@ function updateRPC() {
             //details: obj.onlineStatus,
             details: obj.titleName,
   //npTitleIconUrl
-            largeImageKey: 'ps4_main',
-            largeImageText: 'tea is delicious',
-            smallImageText: 'i am my own pillows',
-        //    largueImageKey: 'ps4_main',
-            smallImageKey: 'ps_small',
+            largeImageKey: obj.npTitleId,
+            //largeImageText: 'tea is delicious',
+            //smallImageText: 'i am my own pillows',
+            smallImageKey: 'ps4_main',
             instance: true
         })
     } else {
