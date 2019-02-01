@@ -198,14 +198,12 @@ function getPsnPresence() {
 
 function updateRPC() {
     var obj = store.get('accountInfo')
-    console.log('DEBUG accountInfo: ' + obj)
-    console.log(obj.platform)
-    console.log('2DEBUG:onlineStatus '+obj.onlineStatus)
+    console.log('1D_obj: '+util.inspect(obj, false, null, true ))
     if (obj.titleName != undefined) {
         client.updatePresence({
             state: obj.gameStatus,
             //details: obj.onlineStatus,
-            details: obj.titleName,
+            details: obj.titleName + 'XXX' + obj.onlineStatus,
   
             largueImageKey: 'ps4_main',
             instance: true
