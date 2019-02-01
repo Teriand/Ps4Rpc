@@ -200,10 +200,12 @@ function updateRPC() {
     var obj = store.get('accountInfo')
     console.log('DEBUG accountInfo: ' + obj)
     console.log(obj.platform)
+    console.log('2DEBUG:onlineStatus '+obj.onlineStatus)
     if (obj.titleName != undefined) {
         client.updatePresence({
-            state: 'Playing: ' + obj.titleName,
-            details: obj.onlineStatus,
+            state: obj.gameStatus,
+            //details: obj.onlineStatus,
+            details: obj.titleName,
   
             largueImageKey: 'ps4_main',
             instance: true
