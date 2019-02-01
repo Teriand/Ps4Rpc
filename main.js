@@ -144,7 +144,7 @@ function getPsnPresence() {
             data += chunk
         })
         res.on('end', function () {
-            //console.log('1DEBUG JSON: ' + data)
+            console.log('1DEBUG data: ' + data)
             var d = JSON.parse(data)
             //console.log('DEBUG TYPEOF DATA: ' + typeof(data))
             //console.log('1DEBUG TYPEOF DATA: ' + typeof(data))
@@ -152,7 +152,7 @@ function getPsnPresence() {
            //console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.parse(JSON.stringify(data))))
             
             //var d = JSON.parse(JSON.stringify(data))
-           // console.log('1DEBUG TYPEOF D: ' + typeof(d))
+           console.log('1DEBUG D: ' + d)
             
             //console.log('1DEBUG size: ' + store.size)
             
@@ -169,7 +169,7 @@ function getPsnPresence() {
             //}
             //console.log('1DEBUG accountInfo: ' + obj)
            // console.log('1DEBUG d: ' + d)
-            //console.log('DEBUG TYPEOF D: ' + typeof(d))
+            console.log('DEBUG TYPEOF D: ' + typeof(d))
             //var dd=JSON.parse(d)
             //console.log('DEBUG TYPEOF D: ' + typeof(dd))
             //console.log('1DEBUG profile1: ' + d["profile"])
@@ -179,12 +179,14 @@ function getPsnPresence() {
             //console.log('1DEBUG profile.npId2: ' + d["profile"].["npId"])
             //console.log('1DEBUG npId: ' + d.profile.npId)
             //console.log('1DEBUG onlineID: ' + d.profile.onlineId)
-            
+             
+            if (d.profile != undefined) {
 
             store.set('onlineID', d.profile.onlineId)
             store.set('profilePicture', d.profile.avatarUrls[1].avatarUrl)
             store.set("accountInfo", d.profile.presences[0])
             updateRPC()
+            }
         })
     })
 
