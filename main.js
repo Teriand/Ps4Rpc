@@ -204,7 +204,11 @@ function updateRPC() {
             state: obj.gameStatus,
             //details: obj.onlineStatus,
             details: obj.titleName + 'XXX' + obj.onlineStatus,
-  
+  //npTitleIconUrl
+            argeImageKey: obj.tleIconUrl,
+            largeImageText: 'tea is delicious',
+            smallImageKey: 'snek_small',
+            smallImageText: 'i am my own pillows',
             largueImageKey: 'ps4_main',
             instance: true
         })
