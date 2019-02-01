@@ -207,7 +207,7 @@ function updateRPC() {
             //details: obj.onlineStatus,
             details: obj.titleName + 'XXX' + obj.onlineStatus,
   //npTitleIconUrl
-            argeImageKey: obj.tleIconUrl,
+            largeImageKey: obj.tleIconUrl,
             largeImageText: 'tea is delicious',
             smallImageKey: 'snek_small',
             smallImageText: 'i am my own pillows',
