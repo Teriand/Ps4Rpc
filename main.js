@@ -123,7 +123,10 @@ function getPsnPresence() {
     var tokendata = store.get('responses')
     // getting the actual profile data using the token -> check console for it :D
     var object = JSON.parse(tokendata)
-
+    
+    console.log("0DEBUG tokendata: " + object)
+    
+    console.log("0DEBUG expires_in: " + object['expires_in'])
     console.log("Access token: " + object['access_token'])
     console.log("Refresh token: " + object['refresh_token'] + "\n") // -> to get a new Access token without login, implement later 
 
