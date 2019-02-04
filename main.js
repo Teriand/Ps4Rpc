@@ -210,7 +210,8 @@ function updateRPC() {
             //details: obj.onlineStatus,
             details: obj.titleName,
   //npTitleIconUrl
-            largeImageKey: obj.npTitleId,
+            // Discord automatically lowercases all assets when uploaded.
+            largeImageKey: obj.npTitleId.toLowerCase(),
             //largeImageText: 'tea is delicious',
             //smallImageText: 'i am my own pillows',
             smallImageKey: 'ps4_main',
