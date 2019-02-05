@@ -1,4 +1,5 @@
-const client = require('discord-rich-presence')('457775893746810880')
+//const client = require('discord-rich-presence')('457775893746810880')
+const client = require('discord-rich-presence')('541917623240097795') //ru ps4
 
 var unixTimestamp = Math.round(new Date("2017-09-15 00:00:00.000").getTime() / 1000);
 
