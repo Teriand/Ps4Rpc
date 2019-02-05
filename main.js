@@ -15,6 +15,7 @@ const util = require('util')
 let tray = null
 
 function createWindow() {
+	console.log('createWindow+')
     ipcMain.on('get-account-data', (event, arg) => {
 
         event.sender.send('profile-picture', store.get('profilePicture'))
@@ -43,10 +44,12 @@ function createWindow() {
     })
 
     //login screen for remoteplay 
-    console.log('login DEBUG: ' + store.get('accountInfo'))
+    console.log('Start Login: ' + store.get('accountInfo'))
     if (store.get('responses') != undefined) {
         win = new BrowserWindow({ width: 414, height: 750, webPreferences: { nodeIntegration: true } })
-        startCron()
+        
+		startCron()
+		
         win.loadFile('site/index.html')
     } else {
         win = new BrowserWindow({ width: 414, height: 750, webPreferences: { nodeIntegration: false } })
@@ -58,7 +61,7 @@ function createWindow() {
             console.log(error)
         })
     }
-
+console.log('createWindow-')
 }
 
 function getCode(data) {
@@ -112,17 +115,23 @@ function login(code) {
 }
 
 function startCron() {
+	console.log('CronStart+')
     if (store.get('responses') != undefined) {
         cron.schedule('*/1 * * * *', () => {
+			console.log('getPsnPresence_run')
             getPsnPresence()
+			console.log('getPsnPresence_done')
         })
     } else {
+		console.log('CronStart-else: '+ store.get('responses'))
         app.relaunch()
         app.exit()
     }
+	console.log('CronStart-')
 }
 
 function getPsnPresence() {
+	console.log('getPsnPresence+')
     var tokendata = store.get('responses')
     // getting the actual profile data using the token -> check console for it :D
     var object = JSON.parse(tokendata)
@@ -145,6 +154,7 @@ function getPsnPresence() {
     }
 
     //get info from ps.net
+	console.log('get info from ps.net+')
     var req = http.request(options, function (res) {
         var data = ""
         res.setEncoding("utf8")
@@ -175,8 +185,8 @@ function getPsnPresence() {
         console.log('problem with request: ' + e.message)
     })
     req.end()
-
-
+console.log('get info from ps.net-')
+console.log('getPsnPresence-')
 }
 
 function updateRPC() {
@@ -234,6 +244,7 @@ function updateRPC() {
 }
 
 function stopRPC() {
+	console.log('stopRPC')
     client.disconnect()
 }
 
