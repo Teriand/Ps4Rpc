@@ -26,6 +26,8 @@ function createWindow() {
 
         store.delete('accountInfo')
         store.delete('responses')
+        store.delete('curgame')
+        store.delete('startTimestamp')
         app.relaunch()
         app.exit()
     })
