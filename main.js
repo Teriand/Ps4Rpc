@@ -179,12 +179,22 @@ function getPsnPresence() {
 
 function updateRPC() {
     var obj = store.get('accountInfo')
+    var curgame = store.get('curgame')
+    var startTimestamp = store.get('curgame')
+    console.log(new Date().toISOString() + ' curgame: '+curgame)
+    console.log(new Date().toISOString() + ' startTimestamp: '+startTimestamp)
     console.log(new Date().toISOString() + ' obj: '+util.inspect(obj, false, null, true ))
     
   
     //in game
     if (obj.titleName != undefined) {
-    
+        
+        if (obj.npTitleId!=curgame || curgame == undefined) {
+                store.set("curgame", obj.npTitleId)
+                store.set("startTimestamp", new Date().now)
+                console.log('store set1: ', obj.npTitleId)
+                console.log('store set2: ', new Date().now)
+            }
             client.updatePresence({
             state: obj.gameStatus,
             //details: obj.onlineStatus,
@@ -194,11 +204,12 @@ function updateRPC() {
             largeImageText: obj.titleName,
             smallImageKey: 'ps4_small',
             smallImageText: obj.platform,
-            //startTimestamp: new Date().getUTCDate(),
+            startTimestamp: startTimestamp-new Date().now,
             instance: true
         })
     } //online only
        else if (obj.onlineStatus != undefined) {
+           
         client.updatePresence({
             state: obj.onlineStatus,
             //details: obj.onlineStatus,
@@ -209,6 +220,7 @@ function updateRPC() {
             //smallImageText: obj.npTitleId.toLowerCase(),
             //smallImageKey: obj.platform,
             //startTimestamp: new Date().getUTCDate(),
+            endTimestamp: new Date().now,
             instance: true
         })
     }
