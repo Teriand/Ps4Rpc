@@ -185,6 +185,7 @@ function updateRPC() {
     var startTimestamp = store.get('startTimestamp')
     console.log(new Date().toISOString() + ' curgame: '+curgame)
     console.log(new Date().toISOString() + ' startTimestamp: '+startTimestamp)
+    console.log(new Date().toISOString() + ' startTimestamp: '+ typeof(startTimestamp))
     console.log(new Date().toISOString() + ' obj: '+util.inspect(obj, false, null, true ))
     
   
