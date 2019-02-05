@@ -128,6 +128,7 @@ function getPsnPresence() {
     //console.log(new Date().toISOString() + "0DEBUG tokendata: " + object)
     
     console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
+    //TODO CRON for refresh token
     console.log(new Date().toISOString() + "Access token: " + object['access_token'])
     console.log(new Date().toISOString() + "Refresh token: " + object['refresh_token'] + "\n") // -> to get a new Access token without login, implement later 
 
@@ -141,6 +142,7 @@ function getPsnPresence() {
         }
     }
 
+    //get info from ps.net
     var req = http.request(options, function (res) {
         var data = ""
         res.setEncoding("utf8")
@@ -150,46 +152,19 @@ function getPsnPresence() {
         res.on('end', function () {
             //console.log('1DEBUG data: ' + data)
             var d = JSON.parse(data)
-            //console.log('DEBUG TYPEOF DATA: ' + typeof(data))
-            //console.log('1DEBUG TYPEOF DATA: ' + typeof(data))
-            //console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.stringify(data)))
-           //console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.parse(JSON.stringify(data))))
-            
-            //var d = JSON.parse(JSON.stringify(data))
-           //console.log('1DEBUG D: ' + d)
-            
-            //console.log('1DEBUG size: ' + store.size)
-            
-            //BAD console.log('1DEBUG store: ' + store.store)
             //console.log('store.store: '+util.inspect(store.store, false, null, true ))
-            
-            //console.log('1DEBUG has accountInfo: ' + store.has('accountInfo'))
-            //console.log('1DEBUG has onlineID: ' + store.has('onlineID'))
-            //console.log('1DEBUG has profilePicture: ' + store.has('profilePicture'))
-            //var obj = store.get('accountInfo')
             //console.log(util.inspect(obj, false, null, true ))
-            //if (obj == undefined) {
-            //    console.log('1DEBUG - obj - accountInfo - undef')
-            //}
-            //console.log('1DEBUG accountInfo: ' + obj)
-           // console.log('1DEBUG d: ' + d)
-            //console.log('DEBUG TYPEOF D: ' + typeof(d))
-            //var dd=JSON.parse(d)
-            //console.log('DEBUG TYPEOF D: ' + typeof(dd))
-            //console.log('1DEBUG profile1: ' + d["profile"])
-             //console.log('DEBUG TYPEOF profile1: ' + typeof(d["profile"]))
-            //console.log('1DEBUG profile1-1: ' + d['profile'])
-            //console.log('1DEBUG profile.npId: ' + d["profile"].npId)
-            //console.log('1DEBUG profile.npId2: ' + d["profile"].["npId"])
-            //console.log('1DEBUG npId: ' + d.profile.npId)
-            //console.log('1DEBUG onlineID: ' + d.profile.onlineId)
-             
-            if (d.profile != undefined) {
 
-            store.set('onlineID', d.profile.onlineId)
-            store.set('profilePicture', d.profile.avatarUrls[1].avatarUrl)
-            store.set("accountInfo", d.profile.presences[0])
-            updateRPC()
+            if (d.profile != undefined) {
+                store.set('onlineID', d.profile.onlineId)
+                store.set('profilePicture', d.profile.avatarUrls[1].avatarUrl)
+                store.set("accountInfo", d.profile.presences[0])
+                updateRPC()
+                console.log('updateRPC')
+            }
+            else {
+            console.log(new Date().toISOString() + ' profile empty: ' + d)
+                
             }
         })
     })
@@ -205,23 +180,42 @@ function getPsnPresence() {
 function updateRPC() {
     var obj = store.get('accountInfo')
     console.log(new Date().toISOString() + ' obj: '+util.inspect(obj, false, null, true ))
+    
+  
+    //in game
     if (obj.titleName != undefined) {
-        client.updatePresence({
+    
+            client.updatePresence({
             state: obj.gameStatus,
             //details: obj.onlineStatus,
             details: obj.titleName,
-  //npTitleIconUrl
             // Discord automatically lowercases all assets when uploaded.
             largeImageKey: obj.npTitleId.toLowerCase(),
-            largeImageText: obj.npTitleId.toLowerCase(),
-            smallImageText: obj.npTitleId.toLowerCase(),
-            smallImageKey: obj.npTitleId.toLowerCase(),
+            largeImageText: obj.titleName,
+            smallImageKey: 'ps4_small',
+            smallImageText: obj.platform,
+            //startTimestamp: new Date().getUTCDate(),
             instance: true
         })
-    } else {
-        client.disconnect()
-        console.log('not playing')
+    } //online only
+       else if (obj.onlineStatus != undefined) {
+        client.updatePresence({
+            state: obj.onlineStatus,
+            //details: obj.onlineStatus,
+            //details: obj.titleName,
+            // Discord automatically lowercases all assets when uploaded.
+            largeImageKey: 'ps4_big',
+            //largeImageText: obj.titleName,
+            //smallImageText: obj.npTitleId.toLowerCase(),
+            //smallImageKey: obj.platform,
+            //startTimestamp: new Date().getUTCDate(),
+            instance: true
+        })
     }
+    //else {
+    //    client.disconnect()
+    //    console.log('not playing')
+   // }
 }
 
 function stopRPC() {
