@@ -217,7 +217,7 @@ function updateRPC() {
             largeImageText: obj.titleName,
             smallImageKey: 'ps4_small',
             smallImageText: obj.platform,
-            startTimestamp: startTimestamp,
+            startTimestamp: store.get('startTimestamp'),
             instance: true
         })
     } //online only
