@@ -136,7 +136,7 @@ function getPsnPresence() {
     // getting the actual profile data using the token -> check console for it :D
     var object = JSON.parse(tokendata)
     
-    //console.log(new Date().toISOString() + "0DEBUG tokendata: " + object)
+    console.log(new Date().toISOString() + "0DEBUG tokendata: " + object)
     
     //console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
     //TODO CRON for refresh token
