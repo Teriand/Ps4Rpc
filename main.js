@@ -165,7 +165,7 @@ function getPsnPresence() {
                 console.log('updateRPC')
             }
             else {
-            console.log(new Date().toISOString() + ' profile empty: ' + d)
+            console.log(new Date().toISOString() + ' profile empty: ' + util.inspect(store.store, false, null, true ))
                 
             }
         })
