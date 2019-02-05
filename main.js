@@ -193,7 +193,7 @@ function updateRPC() {
         
         if (obj.npTitleId!=curgame || curgame == undefined) {
                 store.set("curgame", obj.npTitleId)
-                store.set("startTimestamp", new Date())
+                store.set("startTimestamp", new Date().getTime() / 1000 | 0)
                 console.log('store set1: ', obj.npTitleId)
                 console.log('store set2: ', new Date())
             }
@@ -206,7 +206,7 @@ function updateRPC() {
             largeImageText: obj.titleName,
             smallImageKey: 'ps4_small',
             smallImageText: obj.platform,
-            startTimestamp: 1549324800,
+            startTimestamp: startTimestamp,
             instance: true
         })
     } //online only
