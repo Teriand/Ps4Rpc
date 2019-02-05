@@ -180,7 +180,7 @@ function getPsnPresence() {
 function updateRPC() {
     var obj = store.get('accountInfo')
     var curgame = store.get('curgame')
-    var startTimestamp = store.get('curgame')
+    var startTimestamp = store.get('startTimestamp')
     console.log(new Date().toISOString() + ' curgame: '+curgame)
     console.log(new Date().toISOString() + ' startTimestamp: '+startTimestamp)
     console.log(new Date().toISOString() + ' obj: '+util.inspect(obj, false, null, true ))
