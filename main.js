@@ -124,11 +124,11 @@ function getPsnPresence() {
     // getting the actual profile data using the token -> check console for it :D
     var object = JSON.parse(tokendata)
     
-    console.log("0DEBUG tokendata: " + object)
+    //console.log(new Date().toISOString() + "0DEBUG tokendata: " + object)
     
-    console.log("0DEBUG expires_in: " + object['expires_in'])
-    console.log("Access token: " + object['access_token'])
-    console.log("Refresh token: " + object['refresh_token'] + "\n") // -> to get a new Access token without login, implement later 
+    console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
+    console.log(new Date().toISOString() + "Access token: " + object['access_token'])
+    console.log(new Date().toISOString() + "Refresh token: " + object['refresh_token'] + "\n") // -> to get a new Access token without login, implement later 
 
     var options = {
         method: 'GET',
@@ -147,7 +147,7 @@ function getPsnPresence() {
             data += chunk
         })
         res.on('end', function () {
-            console.log('1DEBUG data: ' + data)
+            //console.log('1DEBUG data: ' + data)
             var d = JSON.parse(data)
             //console.log('DEBUG TYPEOF DATA: ' + typeof(data))
             //console.log('1DEBUG TYPEOF DATA: ' + typeof(data))
@@ -155,7 +155,7 @@ function getPsnPresence() {
            //console.log('1DEBUG TYPEOF stringify DATA: ' + typeof(JSON.parse(JSON.stringify(data))))
             
             //var d = JSON.parse(JSON.stringify(data))
-           console.log('1DEBUG D: ' + d)
+           //console.log('1DEBUG D: ' + d)
             
             //console.log('1DEBUG size: ' + store.size)
             
@@ -172,7 +172,7 @@ function getPsnPresence() {
             //}
             //console.log('1DEBUG accountInfo: ' + obj)
            // console.log('1DEBUG d: ' + d)
-            console.log('DEBUG TYPEOF D: ' + typeof(d))
+            //console.log('DEBUG TYPEOF D: ' + typeof(d))
             //var dd=JSON.parse(d)
             //console.log('DEBUG TYPEOF D: ' + typeof(dd))
             //console.log('1DEBUG profile1: ' + d["profile"])
@@ -203,7 +203,7 @@ function getPsnPresence() {
 
 function updateRPC() {
     var obj = store.get('accountInfo')
-    console.log('1D_obj: '+util.inspect(obj, false, null, true ))
+    console.log(new Date().toISOString() + ' obj: '+util.inspect(obj, false, null, true ))
     if (obj.titleName != undefined) {
         client.updatePresence({
             state: obj.gameStatus,
@@ -212,9 +212,9 @@ function updateRPC() {
   //npTitleIconUrl
             // Discord automatically lowercases all assets when uploaded.
             largeImageKey: obj.npTitleId.toLowerCase(),
-            //largeImageText: 'tea is delicious',
-            //smallImageText: 'i am my own pillows',
-            smallImageKey: 'ps4_main',
+            largeImageText: obj.npTitleId.toLowerCase(),
+            smallImageText: obj.npTitleId.toLowerCase(),
+            smallImageKey: obj.npTitleId.toLowerCase(),
             instance: true
         })
     } else {
