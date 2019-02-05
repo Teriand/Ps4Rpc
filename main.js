@@ -122,6 +122,11 @@ function startCron() {
             getPsnPresence()
 			console.log('getPsnPresence_done')
         })
+	 cron.schedule('*/55 * * * *', () => {
+			console.log('refreshToken_run')
+            refreshToken()
+			console.log('refreshToken_done')
+        })
     } else {
 		console.log('CronStart-else: '+ store.get('responses'))
         app.relaunch()
@@ -130,13 +135,52 @@ function startCron() {
 	console.log('CronStart-')
 }
 
+function refreshToken() {
+	console.log('refreshToken+')
+    var tokendata = store.get('responses')
+    var object = JSON.parse(tokendata)
+    console.log(new Date().toISOString() + "OLD Access token: " + object['access_token'])
+    console.log(new Date().toISOString() + "OLD Refresh token: " + object['refresh_token'] + "\n")
+	var data = queryString.stringify({
+        'grant_type': 'refresh_token',
+        'refresh_token': object['refresh_token'],
+        'scope': 'psn:clientapp'
+    })
+    var options = {
+        method: 'POST',
+        port: 443,
+        hostname: 'auth.api.sonyentertainmentnetwork.com',
+        path: '/2.0/oauth/token',
+        headers: {
+            'Authorization': 'Basic YmE0OTVhMjQtODE4Yy00NzJiLWIxMmQtZmYyMzFjMWI1NzQ1Om12YWlaa1JzQXNJMUlCa1k=',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': data.length
+        }
+    }
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8')
+        res.on('data', function (body) {
+            store.set('responses', body)
+            console.log('new refresh body: ' + body)
+            //startCron()
+        })
+    })
+    req.on('error', function (e) {
+        console.log('problem with request: ' + e.message)
+    })
+    req.write(data)
+    req.end()
+
+	console.log('refreshToken-')
+}
+
 function getPsnPresence() {
 	console.log('getPsnPresence+')
     var tokendata = store.get('responses')
     // getting the actual profile data using the token -> check console for it :D
     var object = JSON.parse(tokendata)
     
-    console.log(new Date().toISOString() + "0DEBUG tokendata: " + object)
+    //console.log(new Date().toISOString() + "0DEBUG tokendata: " + object)
     
     //console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
     //TODO CRON for refresh token
