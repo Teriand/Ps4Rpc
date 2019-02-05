@@ -138,7 +138,7 @@ function getPsnPresence() {
     
     //console.log(new Date().toISOString() + "0DEBUG tokendata: " + object)
     
-    console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
+    //console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
     //TODO CRON for refresh token
     console.log(new Date().toISOString() + "Access token: " + object['access_token'])
     console.log(new Date().toISOString() + "Refresh token: " + object['refresh_token'] + "\n") // -> to get a new Access token without login, implement later 
@@ -164,6 +164,7 @@ function getPsnPresence() {
         res.on('end', function () {
             //console.log('1DEBUG data: ' + data)
             var d = JSON.parse(data)
+	    console.log('DEBUG data: ' + d)
             //console.log('store.store: '+util.inspect(store.store, false, null, true ))
             //console.log(util.inspect(obj, false, null, true ))
 
