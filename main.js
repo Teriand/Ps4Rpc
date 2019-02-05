@@ -191,9 +191,9 @@ function updateRPC() {
         
         if (obj.npTitleId!=curgame || curgame == undefined) {
                 store.set("curgame", obj.npTitleId)
-                store.set("startTimestamp", new Date().now)
+                store.set("startTimestamp", new Date())
                 console.log('store set1: ', obj.npTitleId)
-                console.log('store set2: ', new Date().now)
+                console.log('store set2: ', new Date())
             }
             client.updatePresence({
             state: obj.gameStatus,
@@ -204,7 +204,7 @@ function updateRPC() {
             largeImageText: obj.titleName,
             smallImageKey: 'ps4_small',
             smallImageText: obj.platform,
-            startTimestamp: startTimestamp-new Date().now,
+            startTimestamp: startTimestamp-new Date(),
             instance: true
         })
     } //online only
@@ -220,7 +220,7 @@ function updateRPC() {
             //smallImageText: obj.npTitleId.toLowerCase(),
             //smallImageKey: obj.platform,
             //startTimestamp: new Date().getUTCDate(),
-            endTimestamp: new Date().now,
+            endTimestamp: new Date(),
             instance: true
         })
     }
