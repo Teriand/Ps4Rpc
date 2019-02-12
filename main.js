@@ -273,7 +273,7 @@ function updateRPC() {
 			//instance: true
         //})
     else {
-		 client.ClearPresence()
+		 client.ClearPresence
 	    
         //client.disconnect()
         console.log('ClearPresence - not playing status')
