@@ -117,7 +117,7 @@ function login(code) {
 function startCron() {
 	console.log('CronStart+')
     if (store.get('responses') != undefined) {
-        cron.schedule('20 * * * * *', () => {
+        cron.schedule('*/1 * * * *', () => {
 			console.log('getPsnPresence_run')
             getPsnPresence()
 			console.log('getPsnPresence_done')
