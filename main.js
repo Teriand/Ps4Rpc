@@ -117,7 +117,7 @@ function login(code) {
 function startCron() {
 	console.log('CronStart+')
     if (store.get('responses') != undefined) {
-        cron.schedule('*/1 * * * *', () => {
+        cron.schedule('20 * * * * *', () => {
 			console.log('getPsnPresence_run')
             getPsnPresence()
 			console.log('getPsnPresence_done')
@@ -273,9 +273,16 @@ function updateRPC() {
 			//instance: true
         //})
     else {
+		 client.updatePresence({
+			state: obj.onlineStatus,
+			largeImageKey: 'ps4_big',
+            
+            instance: true
+        })
         client.disconnect()
         console.log('not playing status')
     }
+    
 
 }
 
