@@ -265,27 +265,19 @@ function updateRPC() {
             startTimestamp: store.get('startTimestamp'),
             instance: true
         })
-    } //online only
-       else if (obj.onlineStatus != undefined) {
-           
-        client.updatePresence({
-            state: obj.onlineStatus,
-            //details: obj.onlineStatus,
-            //details: obj.titleName,
-            // Discord automatically lowercases all assets when uploaded.
-            largeImageKey: 'ps4_big',
-            //largeImageText: obj.titleName,
-            //smallImageText: obj.npTitleId.toLowerCase(),
-            //smallImageKey: obj.platform,
-            //startTimestamp: new Date().getUTCDate(),
-            //endTimestamp: new Date(),
-            instance: true
-        })
+    } //online only. but LLIYTHUK dont need it. If u need uncomment this code
+       //else if (obj.onlineStatus != undefined) {
+        //client.updatePresence({
+			//state: obj.onlineStatus,
+			//largeImageKey: 'ps4_big',
+			//instance: true
+        //})
+    else {
+        client.disconnect()
+        console.log('not playing status')
     }
-    //else {
-    //    client.disconnect()
-    //    console.log('not playing')
-   // }
+    }
+
 }
 
 function stopRPC() {
