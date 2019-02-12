@@ -273,14 +273,10 @@ function updateRPC() {
 			//instance: true
         //})
     else {
-		 client.updatePresence({
-			state: obj.onlineStatus,
-			largeImageKey: 'ps4_big',
-            
-            instance: true
-        })
+		 client.ClearPresence()
+	    
         //client.disconnect()
-        console.log('not playing status')
+        console.log('ClearPresence - not playing status')
     }
     
 
