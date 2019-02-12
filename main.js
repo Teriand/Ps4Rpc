@@ -276,7 +276,6 @@ function updateRPC() {
         client.disconnect()
         console.log('not playing status')
     }
-    }
 
 }
 
