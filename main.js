@@ -216,6 +216,7 @@ function getPsnPresence() {
                 store.set('onlineID', d.profile.onlineId)
                 store.set('profilePicture', d.profile.avatarUrls[1].avatarUrl)
                 store.set("accountInfo", d.profile.presences[0])
+		store.set("trophySummary", d.profile.trophySummary)
                 updateRPC()
                 console.log('updateRPC')
             }
@@ -238,11 +239,12 @@ function updateRPC() {
     var obj = store.get('accountInfo')
     var curgame = store.get('curgame')
     var startTimestamp = store.get('startTimestamp')
-    console.log(new Date().toISOString() + ' curgame: '+curgame)
-    console.log(new Date().toISOString() + ' startTimestamp: '+startTimestamp)
-    console.log(new Date().toISOString() + ' startTimestamp: '+ typeof(startTimestamp))
-    console.log(new Date().toISOString() + ' obj: '+util.inspect(obj, false, null, true ))
-    
+    var trophySummary = store.get('trophySummary')
+    //console.log(new Date().toISOString() + ' curgame: '+curgame)
+    //console.log(new Date().toISOString() + ' startTimestamp: '+startTimestamp)
+    //console.log(new Date().toISOString() + ' startTimestamp: '+ typeof(startTimestamp))
+    //console.log(new Date().toISOString() + ' obj: '+util.inspect(obj, false, null, true ))
+    console.log(new Date().toISOString() + ' trophySummary: '+trophySummary)
   
     //in game
     if (obj.titleName != undefined) {
@@ -273,15 +275,19 @@ function updateRPC() {
 			//instance: true
         //})
     else {
-		// client.ClearPresence
-	   
+		// client.ClearPresence dont support by lib?
+	    //need show it
+	//PlayStation 4
+	//psn: LLIYTHUK
+	//level: 15 (71%)
+	//platinum: 22, gold: 95, silver: 342, bronze: 1531
 	        client.updatePresence({
-			state: obj.onlineStatus,
-			largeImageKey: 'ps4_big',
-			instance: true
+			 state: 'level: ' + trophySummary.level + '(' + trophySummary.progress+ '%)',
+		         details: 'platinum: '+trophySummary.earnedTrophies.platinum, ', gold: '+trophySummary.earnedTrophies.gold, ', silver: '+trophySummary.earnedTrophies.silver, ', bronze: '+trophySummary.earnedTrophies.bronze,
+			 instance: true
         })
         //client.disconnect()
-        console.log('ClearPresence - not playing status')
+        //console.log('ClearPresence - not playing status')
     }
     
 
