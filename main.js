@@ -17,14 +17,14 @@ let tray = null
 function createWindow() {
 	console.log('createWindow+')
     ipcMain.on('get-account-data', (event, arg) => {
-
+console.log("get-account-data+")
         event.sender.send('profile-picture', store.get('profilePicture'))
         event.sender.send('nickname', store.get('onlineID'))
     })
 
 
     ipcMain.on('logout-function', (event, arg) => {
-
+console.log("logout-function+")
         store.delete('accountInfo')
         store.delete('responses')
         store.delete('curgame')
@@ -34,6 +34,7 @@ function createWindow() {
     })
 
     ipcMain.on('switch-status', (event, arg) => {
+		console.log("switch-status+")
         if (arg == 'checked') {
             updateRPC()
             console.log("enabling rpc")
