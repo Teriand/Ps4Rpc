@@ -226,7 +226,7 @@ function getPsnPresence() {
 	var tokendata = store.get('responses')
 		// getting the actual profile data using the token -> check console for it :D
 		var object = JSON.parse(tokendata)
-        	store.set('NextTokenRefreshDate', new Date().getTime()+60*60*1000)
+        	store.set('NextTokenRefreshDate', new Date().getTime()+object.expires_in*1000)
 		console.log(new Date().toISOString() + "NextTokenRefreshDate : " + new Date(store.get('NextTokenRefreshDate')))
 
 		//console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
