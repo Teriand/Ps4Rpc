@@ -283,7 +283,7 @@ function updateRPC() {
 	//platinum: 22, gold: 95, silver: 342, bronze: 1531
 	        client.updatePresence({
 			 state: 'level: ' + tS.level + '(' + tS.progress+ '%)',
-		         details: 'platinum: '+Ts.earnedTrophies.platinum + 
+		         details: 'platinum: '+tS.earnedTrophies.platinum + 
 				  ', gold: '+tS.earnedTrophies.gold +
 				  ', silver: '+tS.earnedTrophies.silver +
 				  ', bronze: '+tS.earnedTrophies.bronze,
