@@ -282,11 +282,12 @@ function updateRPC() {
 	//level: 15 (71%)
 	//platinum: 22, gold: 95, silver: 342, bronze: 1531
 	        client.updatePresence({
-			 state: 'level: ' + tS.level + '(' + tS.progress+ '%)',
-		         details: 'platinum: '+tS.earnedTrophies.platinum + 
+			 details: 'level: ' + tS.level + ' (' + tS.progress+ '%)',
+		         state: 'platinum: '+tS.earnedTrophies.platinum + 
 				  ', gold: '+tS.earnedTrophies.gold +
 				  ', silver: '+tS.earnedTrophies.silver +
 				  ', bronze: '+tS.earnedTrophies.bronze,
+			 largeImageKey: 'ps4_big',
 			 instance: true
         })
         //client.disconnect()
