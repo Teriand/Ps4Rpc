@@ -150,6 +150,8 @@ function login(code) {
 		req.end()
 		if (store.get('accountInfo') == undefined) {
 			console.log('exiting')
+			app.relaunch()
+			setTimeout(function(){ app.exit() }, 2000);
 		}
 }
 
@@ -331,7 +333,10 @@ function updateRPC() {
 
 function stopRPC() {
 	console.log('stopRPC')
-	client.disconnect()
+    client.updatePresence({
+        state: 'Iddle',
+        instance: false
+    });
 }
 
 app.on('ready', () => {
