@@ -244,7 +244,7 @@ function updateRPC() {
     //console.log(new Date().toISOString() + ' startTimestamp: '+startTimestamp)
     //console.log(new Date().toISOString() + ' startTimestamp: '+ typeof(startTimestamp))
     //console.log(new Date().toISOString() + ' obj: '+util.inspect(obj, false, null, true ))
-    console.log(new Date().toISOString() + ' trophySummary: '+trophySummary)
+    console.log(new Date().toISOString() + ' trophySummary: '+tS)
   
     //in game
     if (obj.titleName != undefined) {
