@@ -239,7 +239,7 @@ function updateRPC() {
     var obj = store.get('accountInfo')
     var curgame = store.get('curgame')
     var startTimestamp = store.get('startTimestamp')
-    var trophySummary = store.get('trophySummary')
+    var tS = store.get('trophySummary')
     //console.log(new Date().toISOString() + ' curgame: '+curgame)
     //console.log(new Date().toISOString() + ' startTimestamp: '+startTimestamp)
     //console.log(new Date().toISOString() + ' startTimestamp: '+ typeof(startTimestamp))
@@ -282,8 +282,11 @@ function updateRPC() {
 	//level: 15 (71%)
 	//platinum: 22, gold: 95, silver: 342, bronze: 1531
 	        client.updatePresence({
-			 state: 'level: ' + trophySummary.level + '(' + trophySummary.progress+ '%)',
-		         details: 'platinum: '+trophySummary.earnedTrophies.platinum, ', gold: '+trophySummary.earnedTrophies.gold, ', silver: '+trophySummary.earnedTrophies.silver, ', bronze: '+trophySummary.earnedTrophies.bronze,
+			 state: 'level: ' + tS.level + '(' + tS.progress+ '%)',
+		         details: 'platinum: '+Ts.earnedTrophies.platinum + 
+				  ', gold: '+tS.earnedTrophies.gold +
+				  ', silver: '+tS.earnedTrophies.silver +
+				  ', bronze: '+tS.earnedTrophies.bronze,
 			 instance: true
         })
         //client.disconnect()
