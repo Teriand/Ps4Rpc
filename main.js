@@ -55,11 +55,11 @@ function createWindow() {
 	var NextTokenRefreshDate = store.get('NextTokenRefreshDate')
 	if (NextTokenRefreshDate != undefined ) {
 		console.log('NextTokenRefreshDate+')
+		console.log('new Date().getTime() - NextTokenRefreshDate: '+ new Date().getTime() - NextTokenRefreshDate)
 		if (new Date().getTime() - NextTokenRefreshDate > 0) {
 		console.log('NextTokenRefreshDate_Update')
 		refreshToken()
 		}
-
 	}
 	else {
 		console.log('NextTokenRefreshDate_DeleteStore')
@@ -85,6 +85,7 @@ function createWindow() {
 
 			win.loadFile('site/index.html')
 	} else {
+		console.log('Else responses +')
 		win = new BrowserWindow({
 				width: 414,
 				height: 750,
@@ -104,8 +105,10 @@ function createWindow() {
 }
 
 function getCode(data) {
+	console.log('getCode+')
 	win.nodeIntegration = true
 		if (!data.startsWith("https://remoteplay.dl.playstation.net/remoteplay/redirect")) {
+			console.log("data.startsWith failed: " + data)
 			return
 		}
 		// catching the RemotePlay auth code.
@@ -113,9 +116,11 @@ function getCode(data) {
 		var c = d[0].split('=')
 		console.log("Code: " + c[1] + "\n")
 		login(c[1])
+	console.log('getCode-')
 }
 
 function login(code) {
+	console.log('login+')
 	// login to remoteplay to get the token to get profile info
 	var data = queryString.stringify({
 			'grant_type': 'authorization_code',
@@ -153,6 +158,7 @@ function login(code) {
 			app.relaunch()
 			setTimeout(function(){ app.exit() }, 2000);
 		}
+ console.log('login-')
 }
 
 function startCron() {
@@ -220,8 +226,8 @@ function getPsnPresence() {
 	var tokendata = store.get('responses')
 		// getting the actual profile data using the token -> check console for it :D
 		var object = JSON.parse(tokendata)
-        store.set('NextTokenRefreshDate', new Date().getTime()+60*60*1000)
-		console.log(new Date().toISOString() + "NextTokenRefreshDate : " + store.get('NextTokenRefreshDate'))
+        	store.set('NextTokenRefreshDate', new Date().getTime()+60*60*1000)
+		console.log(new Date().toISOString() + "NextTokenRefreshDate : " + new Date(store.get('NextTokenRefreshDate')))
 
 		//console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
 		console.log(new Date().toISOString() + "Access token: " + object['access_token'])
