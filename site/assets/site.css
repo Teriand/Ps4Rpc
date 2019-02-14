@@ -458,11 +458,11 @@ background-image: url("images/welcome-bg.png");
         mix-blend-mode: screen; }
       .page.hero::before {
         top: 0;
-       /* background-image: url("https://s3.amazonaws.com/parsec-static/img/mountains.jpg");*/
+        background-image: url("https://s3.amazonaws.com/parsec-static/img/mountains.jpg");
         background-position-y: bottom; }
       .page.hero::after {
         bottom: 0;
-        /*background-image: url("https://s3.amazonaws.com/parsec-static/img/grid.png");*/
+        background-image: url("https://s3.amazonaws.com/parsec-static/img/grid.png");
         background-position-y: top; }
       .page.hero .hero-content {
         position: relative;
