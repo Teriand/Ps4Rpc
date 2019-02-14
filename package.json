@@ -5,7 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "deserialise-jsonapi": "0.0.6",
-    "discord-rich-presence": "0.0.7",
+    "discord-rich-presence": "0.0.8",
     "electron": "^2.0.9",
     "electron-store": "^2.0.0",
     "jquery": "^3.3.1"
