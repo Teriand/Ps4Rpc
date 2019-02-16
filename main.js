@@ -329,7 +329,7 @@ function updateRPC() {
 				', silver: ' + tS.earnedTrophies.silver +
 				', bronze: ' + tS.earnedTrophies.bronze,
 				largeImageKey: 'ps4_big',
-				instance: true
+				instance: false
 			})
 			//client.disconnect()
 			//console.log('ClearPresence - not playing status')
