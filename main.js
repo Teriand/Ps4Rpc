@@ -24,6 +24,7 @@ const {
 	let tray = null
 
 function createWindow() {
+	console.log(new Date().toISOString() + ' Store after starting program : ' + util.inspect(store.store, false, null, true))
 	console.log('createWindow+')
 	ipcMain.on('get-account-data', (event, arg) => {
 		console.log("get-account-data+")
@@ -37,6 +38,7 @@ function createWindow() {
 		store.delete('responses')
 		store.delete('curgame')
 		store.delete('startTimestamp')
+		console.log(new Date().toISOString() + ' Store after deleting: ' + util.inspect(store.store, false, null, true))
 		app.relaunch()
 		app.exit()
 	})
