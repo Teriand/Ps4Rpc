@@ -57,7 +57,7 @@ function createWindow() {
 	var NextTokenRefreshDate = store.get('NextTokenRefreshDate')
 	if (NextTokenRefreshDate != undefined ) {
 		console.log('NextTokenRefreshDate+')
-		console.log('new Date().getTime() - NextTokenRefreshDate: '+ new Date().getTime() - NextTokenRefreshDate)
+//		console.log('new Date().getTime() - NextTokenRefreshDate: '+ new Date().getTime() - NextTokenRefreshDate)
 		if (new Date().getTime() - NextTokenRefreshDate > 0) {
 		console.log('NextTokenRefreshDate_Update')
 		refreshToken()
@@ -146,6 +146,9 @@ function login(code) {
 			res.setEncoding('utf8')
 			res.on('data', function (body) {
 				store.set('responses', body)
+				var object = JSON.parse(body)
+				store.set('NextTokenRefreshDate', new Date().getTime()+object.expires_in*1000)
+				console.log(new Date().toISOString() + "NextTokenRefreshDate : " + new Date(store.get('NextTokenRefreshDate')))
 				startCron()
 			})
 		})
@@ -190,6 +193,7 @@ function refreshToken() {
 		var object = JSON.parse(tokendata)
 		console.log(new Date().toISOString() + "OLD Access token: " + object['access_token'])
 		console.log(new Date().toISOString() + "OLD Refresh token: " + object['refresh_token'] + "\n")
+		console.log(new Date().toISOString() + "OLD NextTokenRefreshDate : " + new Date(store.get('NextTokenRefreshDate')))
 		var data = queryString.stringify({
 			'grant_type': 'refresh_token',
 			'refresh_token': object['refresh_token'],
@@ -210,7 +214,10 @@ function refreshToken() {
 			res.setEncoding('utf8')
 			res.on('data', function (body) {
 				store.set('responses', body)
+				var object = JSON.parse(body)
+				store.set('NextTokenRefreshDate', new Date().getTime()+object.expires_in*1000)
 				console.log('new refresh body: ' + body)
+				console.log(new Date().toISOString() + "NextTokenRefreshDate : " + new Date(store.get('NextTokenRefreshDate')))
 				//startCron()
 			})
 		})
@@ -228,8 +235,8 @@ function getPsnPresence() {
 	var tokendata = store.get('responses')
 		// getting the actual profile data using the token -> check console for it :D
 		var object = JSON.parse(tokendata)
-        	store.set('NextTokenRefreshDate', new Date().getTime()+object.expires_in*1000)
-		console.log(new Date().toISOString() + "NextTokenRefreshDate : " + new Date(store.get('NextTokenRefreshDate')))
+        //store.set('NextTokenRefreshDate', new Date().getTime()+object.expires_in*1000)
+		//console.log(new Date().toISOString() + "NextTokenRefreshDate : " + new Date(store.get('NextTokenRefreshDate')))
 
 		//console.log(new Date().toISOString() + "Expires_in (sec): " + object['expires_in'])
 		console.log(new Date().toISOString() + "Access token: " + object['access_token'])
